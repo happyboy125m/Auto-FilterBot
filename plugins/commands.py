@@ -480,63 +480,55 @@ async def delete_all_index_confirm(bot, message):
 async def settings(client, message):
     user_id = message.from_user.id if message.from_user else None
     if not user_id:
-        return await message.reply(f"ʏᴏᴜ'ʀᴇ ᴀɴᴏɴʏᴍᴏᴜꜱ ᴀᴅᴍɪɴ.")
+        return await message.reply("ʏᴏᴜ'ʀᴇ ᴀɴᴏɴʏᴍᴏᴜꜱ ᴀᴅᴍɪɴ.")
+    
     chat_type = message.chat.type
+
     if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         grp_id = message.chat.id
-        if not await is_check_admin(client, grp_id, message.from_user.id):
+        if not await is_check_admin(client, grp_id, user_id):
             return await message.reply_text('<b>ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪꜱ ɢʀᴏᴜᴘ</b>')
+        
         await db.connect_group(grp_id, user_id)
+        
+        # Only private button
         btn = [[
-                InlineKeyboardButton("👤 ᴏᴘᴇɴ ɪɴ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ 👤", callback_data=f"opnsetpm#{grp_id}")
-              ],[
-                InlineKeyboardButton("👥 ᴏᴘᴇɴ ʜᴇʀᴇ 👥", callback_data=f"opnsetgrp#{grp_id}")
-              ]]
+            InlineKeyboardButton(
+                "👤 ᴏᴘᴇɴ ɪɴ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ 👤", 
+                callback_data=f"opnsetpm#{grp_id}"
+            )
+        ]]
+        
         await message.reply_text(
-                text="<b>ᴡʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ? ⚙️</b>",
-                reply_markup=InlineKeyboardMarkup(btn),
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=message.id
+            text="<b>ᴡʜᴇʀᴇ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴏᴘᴇɴ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ ? ⚙️</b>",
+            reply_markup=InlineKeyboardMarkup(btn),
+            disable_web_page_preview=True,
+            parse_mode=enums.ParseMode.HTML,
+            reply_to_message_id=message.id
         )
+
     elif chat_type == enums.ChatType.PRIVATE:
         connected_groups = await db.get_connected_grps(user_id)
         if not connected_groups:
-            return await message.reply_text("No Connected Groups Found .")
+            return await message.reply_text("No Connected Groups Found.")
+        
         group_list = []
         for group in connected_groups:
             try:
                 silentx = await client.get_chat(group)
                 group_list.append([
-                    InlineKeyboardButton(text=silentx.title, callback_data=f"grp_pm#{silentx.id}")
+                    InlineKeyboardButton(
+                        text=silentx.title, 
+                        callback_data=f"grp_pm#{silentx.id}"
+                    )
                 ])
             except Exception as e:
                 print(f"Error In PM Settings Button - {e}")
                 pass
-        await message.reply_text('Here Is Your Connected Groups.', reply_markup=InlineKeyboardMarkup(group_list))
-                                                                                                            
-
-@Client.on_message(filters.command('reload'))
-async def connect_group(client, message):
-    user_id = message.from_user.id
-    if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        await db.connect_group(message.chat.id, user_id)
-        await message.reply_text("Group Reloaded ✅ Now You Can Manage This Group From PM.")
-    elif message.chat.type == enums.ChatType.PRIVATE:
-        if len(message.command) < 2:
-            await message.reply_text("Use: /reload <group_id>")
-            return
-        try:
-            group_id = int(message.command[1])
-            if not await is_check_admin(client, group_id, user_id):
-                await message.reply_text("You're Not Admin In That Group.")
-                return
-            chat = await client.get_chat(group_id)
-            await db.connect_group(group_id, user_id)
-            await message.reply_text(f"Linked {chat.title} to PM.")
-        except:
-            await message.reply_text("Invalid group ID or error occurred.")
-
+        
+        await message.reply_text(
+            'Here Is Your Connected Groups.', 
+            reply_markup=InlineKeyboardMarkup(group_list))
 @Client.on_message((filters.command(["request", "Request"]) | filters.regex("#request") | filters.regex("#Request")) & filters.group)
 async def requests(bot, message):
     if REQST_CHANNEL is None or SUPPORT_CHAT_ID is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
