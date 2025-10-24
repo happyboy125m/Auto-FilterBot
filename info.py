@@ -50,7 +50,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'SilentXBotz_files')
 MULTIPLE_DB = is_enabled(os.environ.get('MULTIPLE_DB', "False"), False) # Type True For Turn On MULTIPLE DB FUNTION 
 DATABASE_URI2 = environ.get('DATABASE_URI2', "")
 
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+xYZKRQc4IgphZTY9')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Movies_requests0')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/premuls')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/mrperfectjikabot')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/cinemacompanysji')
@@ -58,7 +58,7 @@ UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/cinemacompa
 AUTH_CHANNEL = int(environ.get('AUTH_CHANNEL', '-1003170959167'))
 AUTH_REQ_CHANNEL = int(environ.get('AUTH_REQ_CHANNEL', '-1003170959167'))
 
-IS_VERIFY = is_enabled('IS_VERIFY', True)
+IS_VERIFY = is_enabled('IS_VERIFY', Off)
 LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1002771812292'))
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1002771812292'))
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
