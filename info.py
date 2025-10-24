@@ -51,9 +51,9 @@ MULTIPLE_DB = is_enabled(os.environ.get('MULTIPLE_DB', "False"), False) # Type T
 DATABASE_URI2 = environ.get('DATABASE_URI2', "")
 
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Movies_requests0')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/premuls')
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/mrperfectjikabot')
-UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/cinemacompanysji')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Avi_movies')
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/avimoviesbit')
+UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/Avi_movies')
 
 AUTH_CHANNEL = int(environ.get('AUTH_CHANNEL', '-1003170959167'))
 AUTH_REQ_CHANNEL = int(environ.get('AUTH_REQ_CHANNEL', '-1003170959167'))
