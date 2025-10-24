@@ -31,15 +31,15 @@ FSUB_IMG = (environ.get('FSUB_IMG', 'https://i.ibb.co/cShkPjcZ/x.jpg')).split()
 
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1982405151').split()] 
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1003127102322').split()]
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1003042648249'))  
-BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '  -1003042648249'))  
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1003237681002'))  
+BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '  -1003237681002'))  
 MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1002623645517'))  
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1003042648249')) 
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002415954131') 
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
-support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002851154596') 
+support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002415954131') 
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://bobbyutube48_db_user:er9RNl8mXVoJ3zlt@cluster0.akhtmm9.mongodb.net/?appName=Cluster0")
