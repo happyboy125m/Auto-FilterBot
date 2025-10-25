@@ -34,7 +34,7 @@ CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHAN
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1003237681002'))  
 BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '  -1003237681002'))  
 MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1002623645517'))  
-PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1003042648249')) 
+PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1003237681002')) 
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002415954131') 
@@ -59,7 +59,7 @@ AUTH_CHANNEL = int(environ.get('AUTH_CHANNEL', '-1002415954131'))
 AUTH_REQ_CHANNEL = int(environ.get('AUTH_REQ_CHANNEL', '-1002415954131'))
 
 IS_VERIFY = is_enabled('IS_VERIFY', False)
-LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1002771812292'))
+LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1003237681002'))
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1002771812292'))
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
 
